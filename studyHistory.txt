@@ -1,0 +1,30 @@
+● studyHistory.txt의 목적
+- 기본적인 학습 기록은 여기 말고 코드 주석으로 작성하고 있다.
+- 주석으로 작성하기에 애매한 것들 또는 주석으로 달고 싶지 않은 것은 여기 메모해두고자 한다.
+
+
+2023-08-24
+1. jar 파일
+./gradlew clean build하면 작성한 테스트코드들도 쭉 실행이 된다.
+테스트가 잘 끝나면, build/libs 경로에 jar파일이 생긴다.
+java -jar .... 로 실행시켜보면, Spring 올라온다! 배포할 때 이렇게 던지면 되는 것임
+
+2. 쿼리 파리미터 로그 남기기 (개발할 때 편리함 떡상)
+jpa를 사용하다보면 query가 어느 타이밍에 나가는지 궁금할 때가 많다.
+그리고 query 파라미터 찍는게 별로라고 한다. ? 로 뜨는 것을 확인할 수가 없다.
+그래서 yml에서 logging 설정 하면 쿼리 파라미터를 좀 편하게 볼 수 있다.
+스부 2.x, hibernate5일 경우
+logging:
+  level:
+    org.hibernate.type: trace
+스부 3.x, hibernate6 이상은 org.hibernate.orm.jdbc.bind: trace이다.
+위 방법 말고 외부 라이브러리를 사용할 수도 있다. (쿼리파라미터 관련 말고도 다양한 옵션 있다!)
+implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.8.1'
+참고: 이런 외부라이브러리는 시스템 자원을 사용한다.
+개발환경 말고 운영시스템에 적용하려면 꼭 성능테스트를 하고 사용하는 것이 좋다. 어쩌면 성능 확 저하시킬 수 있어서 유의.
+
+3. 버전정보 명시? 명시안함?
+버전정보를 명시해야하는 경우: 스프링부트에서 미리 세팅해놓은 버전정보가 없는 라이브러리일 경우, 명시해야 한다.
+아래 두개를 비교해보자.
+implementation 'org.springframework.boot:spring-boot-devtools'
+implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.8.1'

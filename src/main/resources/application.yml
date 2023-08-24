@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/C:/Users/kye33/Desktop/JpaStudy/jpashop
+    username: sa
+    password:
+    password-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+#        show_sql: true <- System.out으로 찍는 것이다. 아래 logging을 사용하도록 하자.
+        format_sql: true
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
