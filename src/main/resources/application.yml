@@ -3,7 +3,7 @@ spring:
     url: jdbc:h2:tcp://localhost/C:/Users/kye33/Desktop/JpaStudy/jpashop
     username: sa
     password:
-    password-class-name: org.h2.Driver
+    driver-class-name: org.h2.Driver
 
   jpa:
     hibernate:
