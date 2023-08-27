@@ -1,0 +1,28 @@
+# test환경의 별도의 resources에 application.yml을 둘 수 있다.
+# 또한 운영(main)이랑 테스트(test)랑 yml은 당연히 분리하는 게 맞다.
+# 지금 목적: 외부db말고 memory db를 띄우려고 한다. (h2는 자바로 돌아서 jvm안에서 띄울 수 있음)
+
+## 근데! SpringBoot에서 놀라운 것은, 다 주석처리 해도 된다..
+## SpringBoot에서는 별 설정이 없으면 기본적으로 Memory모드로 돌리기 때문임!
+## 참고: 기본적으로 SpringBoot는 create-drop으로 돌아간다.
+##      drop - create   VS   drop - create - drop
+
+#spring:
+#  datasource:
+#    url: jdbc:h2:mem:test  # runtimeOnly 'com.h2database:h2'가 되어있어서
+#    username: sa
+#    password:
+#    driver-class-name: org.h2.Driver
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: create
+#    properties:
+#      hibernate:
+##        show_sql: true <- System.out으로 찍는 것이다. 아래 logging을 사용하도록 하자.
+#        format_sql: true
+#
+#logging:
+#  level:
+#    org.hibernate.SQL: debug
+#    org.hibernate.type: trace
