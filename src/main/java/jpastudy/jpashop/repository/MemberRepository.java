@@ -33,6 +33,8 @@ public class MemberRepository {
                 .getResultList();
     }
 
-    public void save(Member member) {
+    public Long save(Member member) {
+        em.persist(member); // persist시점엔 insert 쿼리 안 나간다. 원래 commit될 때 flush되면서 insert 쿼리 쫙 나가는 거임.
+        return member.getId();
     }
 }
