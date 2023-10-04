@@ -1,13 +1,16 @@
 package jpastudy.jpashop.domain;
 
 import jpastudy.jpashop.domain.item.Item;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)  // 이렇게 기본생성자 다루기도 가능!
 public class OrderItem {
 
     @Id
@@ -25,6 +28,11 @@ public class OrderItem {
 
     private int orderPrice;
     private int count; // 주문 수량
+
+//    // new연산자를 이렇게 방지할 수 있구나!
+//    // cf. JPA는 기본생성자를 protected까지 허용해준다.
+//    protected OrderItem() {
+//    }
 
     // == 생성 메서드 ==
     // : 참고 - 주문상품 가격은 고정해놓으면 되는 거 아닌가요? 아닙니다. 주문시마다 할인 등으로 인해 가격 변동 O
