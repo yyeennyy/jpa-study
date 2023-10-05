@@ -10,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-@Getter
+@Getter @Setter
 //@Setter  밖에서 set하는게 아니라, 아래와 같이 비즈니스로직을 통해 변경하도록 하자. 객체지향답게..
 public abstract class Item {
     @Id
