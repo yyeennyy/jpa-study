@@ -9,7 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import java.util.List;
 import javax.validation.Valid;
 
 @Controller
@@ -48,5 +48,16 @@ public class MemberController {
 
         memberService.join(member);
         return "redirect:/";  // 저장이 되고나서 재로딩되면 안좋기 때문에 redirect 를 많이 씁니다. redirect 로 첫번째 페이지에 보내버릴게요.
+    }
+
+    @GetMapping("/members")
+    public String list(Model model) {
+        List<Member> members = memberService.findMembers();
+        model.addAttribute("members", members);  // Entity 를 그대로 뿌리고 있다? 보통은 안돼! DTO 를 사용하자.
+        // 주의:::: 이런 템플릿 엔진으로 던질 때는 괜찮지만...
+
+        // API 일 경우에는 "절대 Entity 를 반환하면 안된다" 스펙이 변해버릴 수 있음... ex: Member Entity 에다가 필드를 하나 추가해버린다면... ㄷ
+        // Entity 로직 추가로 API 스펙이 변동되는 상황... 그래서 절대 XXXXX
+        return "members/memberList";
     }
 }
