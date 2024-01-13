@@ -12,7 +12,10 @@ spring:
       hibernate:
 #        show_sql: true <- System.out으로 찍는 것이다. 아래 logging을 사용하도록 하자.
         format_sql: true
-
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    # 스프링부트 설정 prefix, suffix 정보를 사용해서 렌더링할 뷰(html)을 찾는다.
 
 logging:
   level:
